@@ -28,6 +28,29 @@ python --version
 
 기본 브랜치는 `main`, 초기 환경 설정 태그는 `v0.0.1`을 사용합니다. 후속 버전은 `vMAJOR.MINOR.PATCH` 형식이며 기존 태그를 이동하지 않습니다.
 
-GitHub 대상은 `dohyun-jose-kim/WallPaper_Generation` 비공개 저장소입니다. 현재 원격 생성 및 연결은 미완료입니다. 공개 전환은 별도 작업입니다.
+GitHub 대상은 `dohyun-jose-kim/WallPaper_Generation` 비공개 저장소입니다. 로컬 origin 연결과 main 추적 설정은 완료되었습니다. 원격의 비공개 상태 및 태그는 사용자 터미널에서 최종 확인해야 합니다. 공개 전환은 별도 작업입니다.
 
 원본 사진, 결과물, ZIP, 가상환경, 비밀 파일은 커밋에서 제외합니다. 기존 A/B/C/D 시안은 추적합니다. `.gitignore`는 이미 커밋된 파일을 제거하지 않으므로 커밋 전 `git diff --cached --name-only`로 확인하세요.
+
+## 브랜치 작업 방식
+
+- `main`: 검증된 안정 버전과 릴리스 태그.
+- `dev`: 개발 통합 브랜치. 삭제하지 않습니다.
+- `feat/*`, `fix/*`, `chore/*`, `docs/*`: 최신 dev에서 분기하는 짧은 작업 브랜치.
+
+```sh
+git switch dev
+git pull --ff-only
+git switch -c feat/style-comparison
+# 작업 및 검증 후 커밋
+git push -u origin feat/style-comparison
+gh pr create --base dev
+```
+
+작업 PR은 dev에 squash merge하고 작업 브랜치를 삭제합니다. PR에는 변경 목적, 검증 결과와 제한을 기록합니다.
+
+릴리스는 dev → main PR을 검증한 뒤 merge commit으로 합칩니다. 장기 브랜치 간 공통 이력을 보존하기 위해 릴리스 PR에는 squash/rebase merge를 사용하지 않습니다. 릴리스 후 main → dev 동기화 PR도 merge commit으로 합칩니다.
+
+main과 dev에는 직접 커밋하거나 강제 push하지 않습니다. 이 규칙은 작업 관례이며 GitHub 보호 규칙은 아직 설정하지 않았습니다.
+
+태그는 검증된 main 커밋에 생성하고 기존 v0.0.1은 이동하지 않습니다. 문서 변경은 CHANGELOG의 Unreleased에 기록하며 매번 태그를 만들지 않습니다. 초기 0.x에서는 기능 추가를 minor, 수정을 patch로 구분합니다.
