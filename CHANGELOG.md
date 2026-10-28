@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- 여백 확장 방식 조사와 정적 HTML 보고서 0.0.1, 2단계 비교 초안을 추가합니다.
+
 - 환경 설정 상태 문서를 실제 로컬 Git 상태에 맞게 정정.
 - main(안정 버전), dev(개발 통합), 작업 브랜치 전략 추가. 작업 PR은 dev에 squash merge하고 릴리스 PR은 main에 merge commit으로 반영.
 
