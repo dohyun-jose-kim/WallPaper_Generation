@@ -19,16 +19,19 @@
 ```sh
 gh repo view --json visibility,url
 git ls-remote origin refs/heads/main 'refs/tags/v0.0.1*'
-git switch -c chore/environment-and-branching
 git add README.md CHANGELOG.md Photo-to-Wallpaper-Rendering-Engine/plan-docs/environment-setup.md
-git diff --cached
-git commit -m "chore: document environment and branching workflow"
-git push -u origin chore/environment-and-branching
-gh pr create --base main --title "Document environment and branching workflow" --body "Update verified local environment status and define short-lived branches with squash merges. Remote visibility and tag verification remain a manual check."
+git commit -m "docs: adopt dev integration branch"
+git push
+git push -u origin dev
+gh pr create --base dev --head chore/environment-and-branching --fill
 ```
 
 GitHub visibility는 PRIVATE여야 하며 원격 main 및 v0.0.1의 peeled commit은 b7d54f6과 일치해야 합니다. 원격 태그가 없으면 `git push origin v0.0.1`로 업로드합니다. 원격 상태가 예상과 다르면 덮어쓰지 않고 먼저 이력을 확인합니다.
 
 ## 브랜치 정책
 
-루트 README의 브랜치 작업 방식을 따릅니다. main은 검증된 결과를 유지하고 feat/fix/chore/docs 작업 브랜치에서 PR을 생성해 squash merge합니다. develop 브랜치는 두지 않습니다. GitHub 보호 규칙은 아직 설정하지 않았습니다. 기존 v0.0.1 태그는 이동하지 않습니다. 공개 전환은 별도 작업입니다.
+루트 README를 따릅니다. 작업 브랜치는 dev에서 분기하고 dev로 PR을 보내 squash merge합니다. 릴리스는 dev → main PR을 merge commit으로 합칩니다. 이후 main → dev 동기화 PR도 merge commit으로 합칩니다. dev는 유지합니다. 기존 v0.0.1은 이동하지 않습니다. GitHub 보호 규칙과 공개 전환은 이번에 설정하지 않았습니다.
+
+## 진행 상태
+
+사용자 터미널에서 dev와 chore/environment-and-branching 생성, 9c6a29f 커밋과 작업 브랜치 push를 완료했습니다. 현재 문서 수정은 아직 미커밋이며 dev 원격 게시와 dev 대상 PR 생성이 남았습니다.

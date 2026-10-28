@@ -34,25 +34,23 @@ GitHub 대상은 `dohyun-jose-kim/WallPaper_Generation` 비공개 저장소입�
 
 ## 브랜치 작업 방식
 
-`main`은 검증된 결과를 유지합니다. 작업마다 짧은 브랜치를 만들고 PR을 통해 squash merge합니다. 별도의 `develop` 브랜치는 사용하지 않습니다.
-
-- `feat/<topic>`: 기능 및 렌더링 실험 구현
-- `fix/<topic>`: 오류 수정
-- `chore/<topic>`: 환경과 도구 설정
-- `docs/<topic>`: 문서만 변경
+- `main`: 검증된 안정 버전과 릴리스 태그.
+- `dev`: 개발 통합 브랜치. 삭제하지 않습니다.
+- `feat/*`, `fix/*`, `chore/*`, `docs/*`: 최신 dev에서 분기하는 짧은 작업 브랜치.
 
 ```sh
-git switch main
+git switch dev
 git pull --ff-only
 git switch -c feat/style-comparison
-# 작업 및 검증 후
-git add <변경한-파일>
-git diff --cached
-git commit -m "feat: add style comparison"
+# 작업 및 검증 후 커밋
 git push -u origin feat/style-comparison
-gh pr create --base main
+gh pr create --base dev
 ```
 
-PR에는 변경 목적, 검증 결과와 남은 제한을 기록합니다. 충돌 해결과 검증 후 squash merge하고 작업 브랜치를 삭제합니다. merge 후 로컬 main을 fast-forward로 갱신합니다. main 직접 커밋과 강제 push는 사용하지 않습니다. 이 규칙은 작업 관례이며 GitHub 보호 규칙을 설정한 상태는 아닙니다.
+작업 PR은 dev에 squash merge하고 작업 브랜치를 삭제합니다. PR에는 변경 목적, 검증 결과와 제한을 기록합니다.
 
-버전 태그는 PR이 합쳐진 main의 검증된 커밋에만 생성합니다. 현재 v0.0.1은 초기 환경 커밋이며 이동하지 않습니다. 문서 수정마다 새 버전을 만들지 않고 CHANGELOG의 Unreleased에 기록합니다. 초기 0.x 단계에서는 기능 추가를 minor, 수정 사항을 patch로 구분합니다.
+릴리스는 dev → main PR을 검증한 뒤 merge commit으로 합칩니다. 장기 브랜치 간 공통 이력을 보존하기 위해 릴리스 PR에는 squash/rebase merge를 사용하지 않습니다. 릴리스 후 main → dev 동기화 PR도 merge commit으로 합칩니다.
+
+main과 dev에는 직접 커밋하거나 강제 push하지 않습니다. 이 규칙은 작업 관례이며 GitHub 보호 규칙은 아직 설정하지 않았습니다.
+
+태그는 검증된 main 커밋에 생성하고 기존 v0.0.1은 이동하지 않습니다. 문서 변경은 CHANGELOG의 Unreleased에 기록하며 매번 태그를 만들지 않습니다. 초기 0.x에서는 기능 추가를 minor, 수정을 patch로 구분합니다.

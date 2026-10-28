@@ -3,7 +3,7 @@
 ## Unreleased
 
 - 환경 설정 상태 문서를 실제 로컬 Git 상태에 맞게 정정.
-- main과 짧은 작업 브랜치, PR squash merge 기반 작업 규칙 추가.
+- main(안정 버전), dev(개발 통합), 작업 브랜치 전략 추가. 작업 PR은 dev에 squash merge하고 릴리스 PR은 main에 merge commit으로 반영.
 
 ## 0.0.1 — 초기 환경 설정
 
