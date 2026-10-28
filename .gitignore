@@ -1,0 +1,26 @@
+# Local photos and generated files
+/data/
+*.zip
+/Photo-to-Wallpaper-Rendering-Engine/results/*
+!/Photo-to-Wallpaper-Rendering-Engine/results/.gitkeep
+
+# Python environment and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.uv-cache/
+
+# Local metadata and logs
+.DS_Store
+*.log
+
+# Secrets and personal credentials
+.env
+.env.*
+!.env.example
+.aws/
+*.pem
+*.key
