@@ -18,3 +18,9 @@
 **우선 실험: Pillow + NumPy.** 원본 보호와 레이어를 Python에서 명시적으로 제어하고 수치를 비교하기 쉬울 것으로 추론한다. 다만 변위 보간은 추가 작업이며 성능상 우위는 주장하지 않는다. **대안: libvips + pyvips.** 재매핑과 배치에 필요한 연산이 있어 첫 방식이 느리거나 구현이 복잡할 때 비교한다. 공식 자료의 효율성 설명은 이 프로젝트의 M5 측정 결과가 아니다.
 
 2단계에서는 세로·가로 각 1장에 5개 스타일을 적용해 10개를 비교하고 원본 영역의 비율·픽셀 변화, EXIF 방향·색상 프로파일, 경계 이음새, 블러 반경·변위·색조, JPEG/PNG와 Brave 표시, 재현성, 시간·최대 메모리를 측정한다. 원본을 90% 이내로 맞출 때 정수 반올림과 업스케일 허용 여부도 정한다. 평가 후 대표 6장으로 확장한다. Python 버전·라이브러리·수치·CLI는 이 실험 이후 확정한다.
+
+## 환경과 추가 사례 반영
+
+[Miniforge](https://github.com/conda-forge/miniforge)는 macOS 11 이상 Apple Silicon용 arm64 설치본을 제공하고, conda-forge는 [Pillow](https://anaconda.org/conda-forge/Pillow)와 [pyvips](https://anaconda.org/channels/conda-forge/packages/pyvips/overview)의 macOS-arm64 패키지를 표시한다. 현재 프로젝트의 uv 환경을 우선 유지하되 네이티브 의존성 관리가 필요하면 별도 Miniforge 환경을 비교한다. 어느 쪽도 이 작업에서 설치·검증하지 않았으며 Python과 패키지 버전은 고정하지 않았다.
+
+추가 GitHub 조사에서 [ImageOps PadOut](https://github.com/MajoorWaldi/ComfyUI-Majoor-ImageOps)과 [AusBoss Load Image + Pad](https://github.com/ausboss/ComfyUI-AusBoss)는 가장자리·반사·블러와 마스크 설계의 직접적인 참고 사례다. [canvas 기반 유리](https://github.com/Whynotmetoo/liquid-glass-canvas)는 정적 출력 경로를 확인할 두 번째 셰이더 사례다. 이들은 실행·적합성 미검증이며 도구 선택을 확정하지 않는다. 각 사례의 제한과 라이선스는 [추가 사례 조사](01-techniques-and-examples.md#추가-오픈소스-사례-조사)에 기록했다.
