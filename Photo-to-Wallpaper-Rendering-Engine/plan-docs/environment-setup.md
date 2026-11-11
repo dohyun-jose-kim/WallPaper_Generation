@@ -1,5 +1,7 @@
 # 초기 환경 설정 — v0.0.1
 
+> 현재 실행 범위(2026-11-11): [Build and Compare 0.0.1](build-n-compare-0.0.1/README.md). 세로·가로 2장, 도구 5개, 총 54개 케이스이며 실패도 유지한다. 아래는 이전 조사/환경 기록이다. 10개·26개 제안, Miniforge 대안 및 이전 실행 순서는 현재 범위에 적용하지 않는다.
+
 ## 범위
 
 현재 작업 폴더를 저장소 루트로 사용합니다. 기존 구조를 유지하며 렌더링 구현, 사진 선정, 패키지 설치는 후속 작업입니다. 보안 범위는 .gitignore 설정입니다.
@@ -30,7 +32,7 @@ GitHub visibility는 PRIVATE여야 하며 원격 main 및 v0.0.1의 peeled commi
 
 ## 브랜치 정책
 
-루트 README를 따릅니다. 작업 브랜치는 dev에서 분기하고 dev로 PR을 보내 squash merge합니다. 릴리스는 dev → main PR을 merge commit으로 합칩니다. 이후 main → dev 동기화 PR도 merge commit으로 합칩니다. dev는 유지합니다. 기존 v0.0.1은 이동하지 않습니다. GitHub 보호 규칙과 공개 전환은 이번에 설정하지 않았습니다.
+루트 README를 따릅니다. 작업 브랜치는 dev에서 분기하고 dev로 PR을 보내 merge commit으로 합칩니다. 작업 PR, dev → main 릴리스 PR, main → dev 동기화 PR 모두 squash/rebase merge를 사용하지 않습니다. 병합 완료를 확인한 작업 브랜치는 로컬과 원격에서 삭제하되, 개별 커밋과 병합 이력은 보존합니다. main과 dev는 유지합니다. 기존 v0.0.1은 이동하지 않습니다. GitHub 보호 규칙과 공개 전환은 이번에 설정하지 않았습니다.
 
 ## 진행 상태
 
