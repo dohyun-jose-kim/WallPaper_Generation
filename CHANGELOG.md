@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.0.2 — prepared for review
+
+- Reviewed the English README guides against the CLI, added the ASCII architecture, and documented source setup, local installation, preset sizes, current UI limitations, and checks available without private comparison assets.
+- Aligned the Rust executable, Python engine and local bundle version to 0.0.2. No rendering features were added. The v0.0.2 tag is deferred until the final PR is merged; v0.0.1 is preserved.
+
 - Implemented WALL-E for macOS ARM64: Rust CLI, independent four-style engine, variable target geometry, input/privacy safeguards, transactional naming/resume, resource/browser supervision, atomic publication and sanitized logs.
 - Added pinned developer tooling, local distribution build, offline selected-prefix installer, validated upgrades, rollback and owned-file uninstall. Verified baseline equality, CLI failure paths and installation lifecycle. No release/tag or main merge.
 - Comparison closeout merged through PR #3. Pipeline remains on one review branch; Linux/Windows follow-ups are issues #4/#5. See docs/PROJECT_STATUS.md for current status; earlier dated entries below describe their historical checkpoints.

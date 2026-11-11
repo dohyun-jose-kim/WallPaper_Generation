@@ -64,7 +64,7 @@ def main():
             if not p.resolve().is_relative_to(OUT.resolve()): raise RuntimeError(f'External symlink in distribution: {relative}')
             links[relative]=target
         elif p.is_file():files[relative]=hashlib.sha256(p.read_bytes()).hexdigest()
-    manifest={'schema_version':1,'version':'0.1.0','platform':'macos-arm64','python':'3.12.14','files':files,'symlinks':links}
+    manifest={'schema_version':1,'version':'0.0.2','platform':'macos-arm64','python':'3.12.14','files':files,'symlinks':links}
     manifest['build_id']=hashlib.sha256(json.dumps(manifest,sort_keys=True).encode()).hexdigest()[:16]
     (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
     print(OUT)

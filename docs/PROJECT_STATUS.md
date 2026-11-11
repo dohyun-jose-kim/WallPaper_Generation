@@ -30,6 +30,18 @@ See the [evidence record](verification.md) for commands and exact coverage. Eigh
 
 Original comparison `.JPG` inputs are multi-frame MPO containers. Production rejects them as specified. Baseline parity uses their preserved clean single-frame PNG preparations; historical comparison preparation retains its original first-frame behavior.
 
+## Current priority: public-release preparation
+
+Feature development is paused at the user's request. The active focus is English README documentation and removing unintended personal information before any visibility change. The root and engine README files are English. The current review adds an ASCII architecture, complete source/install examples, explicit preset dimensions, current CLI limitations, and a clear separation between public-checkout tests and the private baseline comparison. The tool-shelf README no longer describes implemented components as pending. The default `main` branch still contains the earlier README until an explicitly chosen integration or history-replacement operation occurs.
+
+The privacy audit found commit/tag identities and local paths in historical documentation. The user accepts publication of the email address and the audited environment information, including information discoverable through old commits and PRs; these findings are no longer publication blockers under that preference. Test-photo files and generated outputs were not found in the scanned Git history and must remain excluded. Four tracked building-photo examples will be public if the repository is made public; their publication suitability remains to be confirmed. The ignored local executable also contains a developer build path; repository visibility does not publish that artifact. Artifact distribution remains a separate decision.
+
+History replacement and a separate public repository were discussed as privacy options, but are not necessary solely to remove the information the user now accepts publishing. No history rewrite, force push, PR/issue deletion, repository deletion, or visibility change has been authorized or performed. Keep the existing repository and history during preparation. The user plans to handle the PR, clean up branches, and then make the repository public. Existing draft PR #6 remains available; the assistant will not create another PR, merge it, or delete branches during this documentation task.
+
+## Version preparation
+
+The user selected **0.0.2** for the completed revision, preserving the existing `v0.0.1` tag. Rust package/lock metadata, the Python package/version response, and the local bundle manifest are aligned to 0.0.2. The `v0.0.2` tag is reserved for the final merged commit after the user's PR; no tag or GitHub Release is created by this preparation.
+
 ## Remaining and deferred
 
 Implementation is ready for review; the pipeline branch is not merged. Linux and Windows support, release publication/signing/notarization, main integration, tags, branch deletion and document archiving remain deferred. Engineering size/resource limits do not imply performance certification across all allowed dimensions or hardware.

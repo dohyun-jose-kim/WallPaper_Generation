@@ -131,7 +131,7 @@ def main():
                     page = browser.new_page()
                     if not page.evaluate("!!document.createElement('canvas').getContext('webgl2')"):
                         raise RuntimeError('webgl_unavailable')
-            emit('ready', engine='0.1.0', vips='.'.join(str(pyvips.version(i)) for i in range(3)))
+            emit('ready', engine='0.0.2', vips='.'.join(str(pyvips.version(i)) for i in range(3)))
         elif args.inspect:
             from .settings import read_source, inspect_source
             try:

@@ -30,4 +30,12 @@ Memory-pressure and busy-CPU thresholds are tested with synthetic measurements; 
 
 The bundle is a local build, not a published or notarized release. Tests use disposable installations; no permanent user installation or PATH/profile edits are made.
 
-Final local artifact build ID: `a22dbb8bd265d6c1`. Manifest: `dist/wall-e-macos-arm64/manifest.json`. Compiled executable SHA-256: `b4181e2e30adb795d3fc05eb96c63a19f03e82ca11eaa406629d44d5fcc50547`. Final source checks: 10 Rust tests, 53 Python/CLI tests, all eight baseline comparisons; final offline lifecycle test passed. Artifacts remain ignored local files.
+Initial pipeline artifact build ID: `a22dbb8bd265d6c1`. Manifest: `dist/wall-e-macos-arm64/manifest.json`. Compiled executable SHA-256: `b4181e2e30adb795d3fc05eb96c63a19f03e82ca11eaa406629d44d5fcc50547`. Final source checks: 10 Rust tests, 53 Python/CLI tests, all eight baseline comparisons; final offline lifecycle test passed. Artifacts remain ignored local files.
+
+## Version 0.0.2 documentation and packaging review
+
+Reviewed the English root, engine, tool-shelf, and installation READMEs against the implemented commands. Added the ASCII architecture and distinguished public-checkout checks from the private eight-image baseline. No rendering features changed. Rust, Python, and bundle version metadata now agree on 0.0.2.
+
+Re-ran `./scripts/check.sh`: formatting and Clippy passed, 10 Rust tests and 53 Python/CLI tests passed, and all eight baseline images retained exactly equal decoded pixels. Rebuilt the bundle and passed the complete offline installation lifecycle again, including real rendering outside the repository with spaces in paths and without developer tools on PATH.
+
+Version 0.0.2 local artifact build ID: `5cc796e89e39390a`. Executable SHA-256: `fa6242d18ab667f4fc77ce01356c929778735ff0d6909ccd5d456c115ba6cbcb`. The packaged executable reports `wall-e 0.0.2`. Artifacts remain ignored and unpublished. No new tag was created.
