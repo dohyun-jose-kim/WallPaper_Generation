@@ -32,3 +32,13 @@ node_modules/
 .aws/
 *.pem
 *.key
+
+# WALL-E runtime and developer build storage
+/wall-pic-in/
+/wall-pic-out/
+/logs/
+/.wallpaper/
+/dist/
+/orchestrator/target/
+*.egg-info/
+build/

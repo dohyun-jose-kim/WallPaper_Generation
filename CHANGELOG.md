@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 0.0.2 — prepared for review
+
+- Reviewed the English README guides against the CLI, added the ASCII architecture, and documented source setup, local installation, preset sizes, current UI limitations, and checks available without private comparison assets.
+- Aligned the Rust executable, Python engine and local bundle version to 0.0.2. No rendering features were added. The v0.0.2 tag is deferred until the final PR is merged; v0.0.1 is preserved.
+
+- Implemented WALL-E for macOS ARM64: Rust CLI, independent four-style engine, variable target geometry, input/privacy safeguards, transactional naming/resume, resource/browser supervision, atomic publication and sanitized logs.
+- Added pinned developer tooling, local distribution build, offline selected-prefix installer, validated upgrades, rollback and owned-file uninstall. Verified baseline equality, CLI failure paths and installation lifecycle. No release/tag or main merge.
+- Comparison closeout merged through PR #3. Pipeline remains on one review branch; Linux/Windows follow-ups are issues #4/#5. See docs/PROJECT_STATUS.md for current status; earlier dated entries below describe their historical checkpoints.
+
+
 - Completed 54 comparison cases; repaired 11 positive-rating report links without modifying images or run records. Selected S1 Blur, S1 Gallery, D3 Frosted, S2 Gradient. Pipeline work follows on one branch; branch cleanup and releases deferred.
 
 - 2026-11-11: Prepared the two selected photos as clean RGB PNG copies. Added reusable orientation, color conversion, proportional resize, PNG export and validation code. Nine tests passed. Three runs gave identical outputs. Original file hashes are unchanged. The 54 wallpaper cases remain planned.

@@ -1,6 +1,6 @@
-# Renderer installation and implementation preparation
+# Renderer dependencies and build tools
 
-Installation completed on 2026-11-11 for Build and Compare 0.0.1. See [verified environment](../plan-docs/build-n-compare-0.0.1/environment-readiness.md). This shelf contains dependency locks, immutable source references and installation smoke checks. Wallpaper adapters, photo preparation, benchmark runner and comparison report are not implemented yet.
+This shelf contains dependency locks, immutable source references, browser adapters, and installation smoke checks. The 54-case comparison and four-style pipeline are implemented. Start with the [current setup and usage guide](../../README.md); the [environment record](../plan-docs/build-n-compare-0.0.1/environment-readiness.md) documents the earlier installation checkpoint.
 
 ## Installed environment
 
@@ -46,7 +46,7 @@ SHELF=Photo-to-Wallpaper-Rendering-Engine/tool-package-shelf
 
 Checks use synthetic pixels and an isolated temporary browser profile, never the user's photos or normal browser profile. They exercise orientation, LittleCMS, PNG round-trip, libvips array/mapim/blur, dependency versions, esbuild, WebGL2, upstream D1/D2 constructors and shader compilation, D3/React DOM imports, viewport/DPR/zoom and a synthetic screenshot. D3 is not mounted, and no glass image is generated. Native browser launches may require an execution environment outside a restricted command sandbox.
 
-Smoke bundles are ignored under `dist/smoke/`; raw results are ignored at `.cache/installation-smoke.json`. These are installation diagnostics, not matrix results or performance benchmarks. The synthetic Brave check does not replace final visual review of the future HTML report.
+Smoke bundles are ignored under `dist/smoke/`; raw results are ignored at `.cache/installation-smoke.json`. These are installation diagnostics, not matrix results or performance benchmarks. The synthetic Brave check does not replace final visual review of the completed HTML report.
 
 ## Sources, local storage and attribution
 
@@ -56,7 +56,7 @@ See [attribution](ATTRIBUTION.md) and preserved license notices in `licenses/`. 
 
 Ignored storage: `.cache/`, `browser-binaries/`, `upstream/`, `dist/`, `node_modules/`, repository-root `.venv`, and engine `results/`. Keep generated photos/previews/raw measurements in `results/build-n-compare-0.0.1/`. Source manifests, locks, attribution, project scripts and concise findings remain eligible for Git tracking.
 
-`run.sh` sets supported thread-control environment variables to 12. It does not implement the matrix runner's process-memory watchdog, sustained-low-memory stop or case timeouts; those belong to the upcoming implementation.
+`run.sh` sets supported thread-control environment variables to 12. It does not implement the matrix runner's process-memory watchdog, sustained-low-memory stop or case timeouts; the comparison runner implements its own supervision, while the production Rust orchestrator manages application resources and timeouts.
 
 ## Updating dependencies
 
