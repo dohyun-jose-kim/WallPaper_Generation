@@ -7,13 +7,13 @@ See [decisions](DECISIONS.md), [pipeline design](pipeline-design.md), and [verif
 - `1917a16` — clean preparation, metadata removal, PNG checks and tests.
 - `782ac75` — 54-case renderer comparison, measured results, offline report and rating lookup.
 - `243134e` — selected styles and accurate pipeline status.
-- [PR #3](https://github.com/dohyun-jose-kim/WallPaper_Generation/pull/3) merged into `dev` as `159e9bc` with a merge commit. Existing branches retained.
+- [PR #3](https://github.com/dohyun-jose-kim/WallPaper_Generation/pull/3) merged into `dev` as `159e9bc` with a merge commit. The completed comparison branch was subsequently removed.
 - All 54 output hashes match the preserved run `20261111T023907Z-52cf6f`. Eleven positive-rating `a` renames resolve without changing filenames, images, ratings or the original manifest.
 - S1 Blur, S1 Gallery, D3 Frosted and S2 Gradient selected for both orientations.
 
 ## Pipeline implementation
 
-All pipeline work is on `feat/wallpaper-pipeline`, published for review in [draft PR #6](https://github.com/dohyun-jose-kim/WallPaper_Generation/pull/6). Usage and verification records were committed in `9fd6417`.
+The pipeline was merged into `dev` through [PR #6](https://github.com/dohyun-jose-kim/WallPaper_Generation/pull/6) as `7a1cbd1`. Usage and verification records were committed in `9fd6417`; English documentation and version 0.0.2 preparation were committed in `a9e7f5f`. The completed work branches have been removed locally and remotely; `main` and `dev` remain.
 
 - `03fd49f` — reusable engine package, separate D3 production entry point and packaged JavaScript, variable targets/borders, input policy, exact foreground restoration.
 - `3dd43fa` — Rust CLI, protocol, durable publication and resource supervision.
@@ -26,22 +26,22 @@ All pipeline work is on `feat/wallpaper-pipeline`, published for review in [draf
 
 ## Verification
 
-See the [evidence record](verification.md) for commands and exact coverage. Eight selected FHD outputs match the preserved baseline pixels. Tests cover image preparation and export, target geometry and ratios, resource policy, transactional allocation, browser serialization, worker faults, cancellation, privacy, resume, collision protection and installation lifecycle. The local release artifact is built on this branch, without publication.
+See the [evidence record](verification.md) for commands and exact coverage. Eight selected FHD outputs match the preserved baseline pixels. Tests cover image preparation and export, target geometry and ratios, resource policy, transactional allocation, browser serialization, worker faults, cancellation, privacy, resume, collision protection and installation lifecycle. The local version 0.0.2 artifact passed installation lifecycle checks and remains unpublished.
 
 Original comparison `.JPG` inputs are multi-frame MPO containers. Production rejects them as specified. Baseline parity uses their preserved clean single-frame PNG preparations; historical comparison preparation retains its original first-frame behavior.
 
-## Current priority: public-release preparation
+## Public repository preparation
 
-Feature development is paused at the user's request. The active focus is English README documentation and removing unintended personal information before any visibility change. The root and engine README files are English. The current review adds an ASCII architecture, complete source/install examples, explicit preset dimensions, current CLI limitations, and a clear separation between public-checkout tests and the private baseline comparison. The tool-shelf README no longer describes implemented components as pending. The default `main` branch still contains the earlier README until an explicitly chosen integration or history-replacement operation occurs.
+The English README review is complete, including the ASCII architecture, source/install examples, preset dimensions, CLI limitations, and the distinction between public-checkout tests and the private baseline comparison. No new product features were added during publication preparation.
 
-The privacy audit found commit/tag identities and local paths in historical documentation. The user accepts publication of the email address and the audited environment information, including information discoverable through old commits and PRs; these findings are no longer publication blockers under that preference. Test-photo files and generated outputs were not found in the scanned Git history and must remain excluded. Four tracked building-photo examples will be public if the repository is made public; their publication suitability remains to be confirmed. The ignored local executable also contains a developer build path; repository visibility does not publish that artifact. Artifact distribution remains a separate decision.
+The privacy audit found commit/tag identities and historical local paths. The user accepts the audited email and environment information being public, including through historical commits and PRs. Private test-photo files and generated outputs were not found in the scanned Git history and remain excluded. The existing four tracked building-photo examples remain part of the repository being published. Local runtime state, logs, and distribution artifacts remain ignored; repository visibility does not publish those files.
 
-History replacement and a separate public repository were discussed as privacy options, but are not necessary solely to remove the information the user now accepts publishing. No history rewrite, force push, PR/issue deletion, repository deletion, or visibility change has been authorized or performed. Keep the existing repository and history during preparation. The user plans to handle the PR, clean up branches, and then make the repository public. Existing draft PR #6 remains available; the assistant will not create another PR, merge it, or delete branches during this documentation task.
+After confirming branch cleanup, the user authorized creating, reviewing, and merging a `dev` to `main` PR, tagging the final merge commit `v0.0.2`, verifying the English README/ASCII diagram/version on `main`, and then making the repository public. This supersedes the earlier deferral of main integration, tag creation, and visibility changes. Existing history and `v0.0.1` are preserved. No force push or history replacement is needed.
 
-## Version preparation
+## Version and publication sequence
 
-The user selected **0.0.2** for the completed revision, preserving the existing `v0.0.1` tag. Rust package/lock metadata, the Python package/version response, and the local bundle manifest are aligned to 0.0.2. The `v0.0.2` tag is reserved for the final merged commit after the user's PR; no tag or GitHub Release is created by this preparation.
+Rust package/lock metadata, the Python package/version response, and the local bundle manifest agree on **0.0.2**. The publication PR carries this status snapshot; its GitHub merge record, the remote `v0.0.2` tag, and repository visibility are the authoritative records for the subsequent publication steps. No GitHub Release or installer assets are included in this operation.
 
 ## Remaining and deferred
 
-Implementation is ready for review; the pipeline branch is not merged. Linux and Windows support, release publication/signing/notarization, main integration, tags, branch deletion and document archiving remain deferred. Engineering size/resource limits do not imply performance certification across all allowed dimensions or hardware.
+Linux [#4](https://github.com/dohyun-jose-kim/WallPaper_Generation/issues/4) and Windows [#5](https://github.com/dohyun-jose-kim/WallPaper_Generation/issues/5), installer distribution/signing/notarization, and document archiving remain follow-up work. Keep `main` and `dev`. Engineering size/resource limits do not imply performance certification across all allowed dimensions or hardware.

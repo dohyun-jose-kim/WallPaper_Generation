@@ -31,7 +31,7 @@ Implementation clarifications:
 
 - Feature work is paused; current preparation focuses on English documentation and publication readiness.
 - The user accepts publication of the existing commit email and audited environment information, including historical details discoverable through commits and PRs. No history reset or force push is required solely to hide those accepted details.
-- Actual user input photos, generated wallpapers, private runtime state, logs and local distribution artifacts remain excluded from Git. Four already tracked building-photo examples are a separate publication-content decision.
+- Actual user input photos, generated wallpapers, private runtime state, logs and local distribution artifacts remain excluded from Git. Four already tracked building-photo examples remain included in the repository publication authorized below.
 - These preferences do not authorize changing repository visibility, rewriting history, deleting PRs/issues or publishing release artifacts.
 
 ## README review and version 0.0.2
@@ -39,3 +39,7 @@ Implementation clarifications:
 - The user requested an English README review with an ASCII architecture diagram. Correct documentation and version metadata without adding product features.
 - Prepare version 0.0.2 for this revision. Preserve v0.0.1, and defer the v0.0.2 tag until the final merged commit.
 - The user plans to handle the PR, clean up branches, and then make the repository public. Do not create another PR, merge, delete branches, or change visibility as part of this preparation.
+
+## Authorized main integration and public visibility
+
+After PR #6 merged into dev and the user removed completed work branches, the user explicitly authorized the assistant to create, review, and merge the dev-to-main PR, create v0.0.2 on the final merge commit, verify the main README/ASCII diagram/version, and make the existing repository public. This supersedes the earlier PR ownership and publication deferrals above. Preserve main, dev, v0.0.1, and existing history. GitHub Release creation, installer asset publication, and further feature work are outside this operation.

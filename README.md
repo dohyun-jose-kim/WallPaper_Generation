@@ -2,7 +2,7 @@
 
 WALL-E is a local command-line tool for macOS on Apple Silicon. It turns one content photo into four 8-bit RGB PNG wallpapers, keeping the complete photo sharp and proportional.
 
-Version **0.0.2** is being prepared for review. No new rendering features are being added during public-release preparation. There is no published installer release yet; you can run from a source checkout or build and install a local bundle.
+Version **0.0.2** provides the verified four-style pipeline described below. There is no published installer release yet; you can run from a source checkout or build and install a local bundle.
 
 | File suffix | Style | Renderer |
 | --- | --- | --- |
@@ -189,6 +189,6 @@ These commands build and test locally; they do not upload a release or create a 
 
 ## Project status
 
-Feature development is paused while documentation and publication readiness are reviewed. The user plans to handle the PR, clean up branches, and then make the repository public. Version `0.0.2` is prepared in the packages; the `v0.0.2` tag is reserved for the final merged commit. The existing `v0.0.1` tag is retained.
+The pipeline was integrated into `dev` through PR #6, and completed work branches have been removed. Version `0.0.2` is the first complete macOS ARM64 pipeline. Publication uses a `dev` to `main` merge commit and a `v0.0.2` tag on that commit; the existing `v0.0.1` tag is retained. Installer distribution and additional platform support remain separate follow-up work.
 
 [Linux support](https://github.com/dohyun-jose-kim/WallPaper_Generation/issues/4) and [Windows support](https://github.com/dohyun-jose-kim/WallPaper_Generation/issues/5) remain follow-up work. See [project status](docs/PROJECT_STATUS.md) and [decisions](docs/DECISIONS.md) for the implementation record and accepted choices.
