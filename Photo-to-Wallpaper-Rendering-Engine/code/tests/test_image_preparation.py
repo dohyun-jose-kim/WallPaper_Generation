@@ -63,11 +63,13 @@ def test_proportional_fit_and_enlargement(size, box, expected):
     assert all(abs(expected[i] - size[i] * scale) <= 0.5 for i in range(2))
 
 
-def test_invalid_profile_and_untagged_non_rgb_fail():
+def test_invalid_profile_and_untagged_cmyk_fail():
     with pytest.raises(ValueError, match="profile"):
         prepare_pixels(source_bytes(Image.new("RGB", (4, 3)), icc_profile=b"not a profile"))
+    buffer = io.BytesIO()
+    Image.new("CMYK", (4, 3)).save(buffer, format="JPEG")
     with pytest.raises(ValueError, match="non-RGB"):
-        prepare_pixels(source_bytes(Image.new("L", (4, 3))))
+        prepare_pixels(buffer.getvalue())
 
 
 def test_png_validator_rejects_metadata_trailing_bytes_and_corruption():
