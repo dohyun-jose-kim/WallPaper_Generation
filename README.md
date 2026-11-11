@@ -1,7 +1,9 @@
 # Photo-to-Wallpaper
 
-사진의 구도와 분위기를 보존하면서 Brave 배경용 이미지를 만드는 프로젝트입니다. 현재는 환경 설정 단계이며 렌더링 코드는 없습니다.
+사진의 구도와 분위기를 보존하면서 Brave 배경용 이미지를 만드는 프로젝트입니다. 현재는 54개 케이스의 Build and Compare 0.0.1 문서 검토 단계이며 렌더링 구현은 아직 시작하지 않았습니다.
 
+- [현재 비교 실행 계획](Photo-to-Wallpaper-Rendering-Engine/plan-docs/build-n-compare-0.0.1/README.md)
+- [향후 로컬 AI 아웃페인팅 조사](Photo-to-Wallpaper-Rendering-Engine/plan-docs/reseatch-0.0.1/local-ai-outpainting-research.md)
 - [상세 기획 및 시안](Photo-to-Wallpaper-Rendering-Engine/README.md)
 - [인수인계](Photo-to-Wallpaper-Rendering-Engine/readme-tmp.md)
 - [환경 설정 계획](Photo-to-Wallpaper-Rendering-Engine/plan-docs/environment-setup.md)
@@ -15,6 +17,8 @@
 - `data/`: 원본 사진, Git 제외
 
 ## Python 환경
+
+아래는 초기 환경 기록입니다. 현재 비교에서는 uv 관리 ARM64 Python 3.12와 루트 `.venv`, 해시 잠금 의존성을 사용하며 정확한 패치 버전과 설치 결과를 기록합니다. Miniforge는 사용하지 않습니다. 환경 교체와 설치는 문서 PR 병합 후 수행합니다.
 
 ```sh
 uv venv .venv
@@ -47,7 +51,9 @@ git push -u origin feat/style-comparison
 gh pr create --base dev
 ```
 
-작업 PR은 dev에 squash merge하고 작업 브랜치를 삭제합니다. PR에는 변경 목적, 검증 결과와 제한을 기록합니다.
+작업 PR은 dev에 merge commit으로 합칩니다. 개별 커밋과 분기·병합 이력을 보존하며 squash/rebase merge는 사용하지 않습니다. PR에는 변경 목적, 검증 결과와 제한을 기록합니다.
+
+병합 완료를 확인한 뒤 해당 작업 브랜치를 로컬과 원격에서 삭제합니다. 브랜치 삭제는 merge commit과 기존 커밋 이력을 삭제하지 않습니다. main과 dev는 유지합니다.
 
 릴리스는 dev → main PR을 검증한 뒤 merge commit으로 합칩니다. 장기 브랜치 간 공통 이력을 보존하기 위해 릴리스 PR에는 squash/rebase merge를 사용하지 않습니다. 릴리스 후 main → dev 동기화 PR도 merge commit으로 합칩니다.
 
