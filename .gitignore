@@ -13,6 +13,14 @@ __pycache__/
 .ruff_cache/
 .uv-cache/
 
+# Browser adapter dependencies and local tool downloads
+node_modules/
+/Photo-to-Wallpaper-Rendering-Engine/tool-package-shelf/upstream/
+/Photo-to-Wallpaper-Rendering-Engine/tool-package-shelf/browser-binaries/
+/Photo-to-Wallpaper-Rendering-Engine/tool-package-shelf/.cache/
+/Photo-to-Wallpaper-Rendering-Engine/tool-package-shelf/dist/
+# Keep adapters, manifests, lockfiles, and attribution tracked.
+
 # Local metadata and logs
 .DS_Store
 *.log
@@ -24,3 +32,13 @@ __pycache__/
 .aws/
 *.pem
 *.key
+
+# WALL-E runtime and developer build storage
+/wall-pic-in/
+/wall-pic-out/
+/logs/
+/.wallpaper/
+/dist/
+/orchestrator/target/
+*.egg-info/
+build/

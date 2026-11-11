@@ -1,0 +1,5 @@
+# pyvips 3.2.0 pyproject.toml build-system requirements.
+# Resolved separately before installation; kept for --no-build-isolation.
+setuptools>=61.0.0
+cffi>=1.0.0
+pkgconfig>=1.5

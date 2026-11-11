@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools==84.2.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wallpaper-engine"
+version = "0.0.2"
+description = "Independent four-style WALL-E image engine"
+requires-python = ">=3.12,<3.13"
+dependencies = ["Pillow==13.0.0", "numpy==2.5.4", "pyvips[binary]==3.2.0", "pyvips-binary==8.18.7", "playwright==1.65.0"]
+
+[project.scripts]
+wallpaper-engine = "wallpaper_engine.worker:main"
+
+[tool.setuptools.package-data]
+wallpaper_engine = ["resources/*"]

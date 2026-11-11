@@ -1,28 +1,39 @@
-# 초기 환경 설정 계획 — v0.0.1
+# 초기 환경 설정 — v0.0.1
+
+> 현재 실행 범위(2026-11-11): [Build and Compare 0.0.1](build-n-compare-0.0.1/README.md). 세로·가로 2장, 도구 5개, 총 54개 케이스이며 실패도 유지한다. 아래는 이전 조사/환경 기록이다. 10개·26개 제안, Miniforge 대안 및 이전 실행 순서는 현재 범위에 적용하지 않는다.
 
 ## 범위
 
-현재 작업 폴더를 저장소 루트로 사용합니다. 기존 파일과 폴더를 유지하며 렌더링 구현, 사진 선정, 패키지 설치는 수행하지 않습니다. 보안 범위는 .gitignore 설정입니다.
+현재 작업 폴더를 저장소 루트로 사용합니다. 기존 구조를 유지하며 렌더링 구현, 사진 선정, 패키지 설치는 후속 작업입니다. 보안 범위는 .gitignore 설정입니다.
 
-## 완료한 로컬 설정
+## 확인 완료
 
-- uv venv .venv: CPython 3.9.6, uv 0.12.11.
-- README, CHANGELOG, .gitignore와 빈 폴더 유지 파일 추가.
-- 원본 data, results 내용, ZIP, 환경과 캐시, 비밀 파일 제외. 기존 시안 4장은 추적 대상.
+- uv 0.12.11과 .venv의 CPython 3.9.6 실행 확인. pip은 설치하지 않았으며 uv 기반 최소 환경을 유지합니다.
+- 원본 data, results 내용, ZIP, 가상환경, 비밀 파일의 Git 제외 확인. 기존 시안 4장은 추적합니다.
+- main, 캐시된 origin/main, annotated tag v0.0.1은 모두 b7d54f6을 가리킵니다.
+- origin은 https://github.com/dohyun-jose-kim/WallPaper_Generation.git 입니다.
+- 이번 문서 수정 전 작업 트리는 깨끗했습니다.
 
-## 남은 Git 설정
+## 남은 확인 및 적용
 
-1. main 브랜치로 Git 초기화.
-2. 추적 목록과 제외 규칙 확인 후 `chore: initialize project environment` 커밋 생성.
-3. annotated tag v0.0.1 생성. 이후 태그는 이동하지 않음.
-4. gh 인증 복구 후 dohyun-jose-kim/WallPaper_Generation 존재 여부 확인.
-5. 없으면 비공개 생성하고 origin 연결. 기존 저장소가 있으면 이력과 공개 여부 확인 후 연결하며 강제 push 금지.
-6. main과 v0.0.1 push 후 원격 일치와 비공개 상태 확인.
+에이전트 환경에서는 GitHub DNS 접근과 .git 쓰기가 제한됩니다. 실시간 원격 확인과 작업 브랜치 생성은 사용자 터미널에서 수행합니다.
 
-## 실행 상태
+```sh
+gh repo view --json visibility,url
+git ls-remote origin refs/heads/main 'refs/tags/v0.0.1*'
+git add README.md CHANGELOG.md Photo-to-Wallpaper-Rendering-Engine/plan-docs/environment-setup.md
+git commit -m "docs: adopt dev integration branch"
+git push
+git push -u origin dev
+gh pr create --base dev --head chore/environment-and-branching --fill
+```
 
-작업 공간에서 .git 생성이 권한 제한으로 차단되었습니다. GitHub CLI 인증도 유효하지 않아 저장소 생성, 커밋, 태그, push는 미완료입니다. 사용자 터미널에서 나머지 단계를 수행해야 합니다.
+GitHub visibility는 PRIVATE여야 하며 원격 main 및 v0.0.1의 peeled commit은 b7d54f6과 일치해야 합니다. 원격 태그가 없으면 `git push origin v0.0.1`로 업로드합니다. 원격 상태가 예상과 다르면 덮어쓰지 않고 먼저 이력을 확인합니다.
 
-## 검증
+## 브랜치 정책
 
-가상환경 Python 실행과 경로, 제외 규칙, Markdown 상대 링크를 확인합니다. Git 설정 후 작업 트리가 깨끗한지, 태그가 완료 커밋을 가리키는지 확인합니다. 공개 전환은 별도 작업입니다.
+루트 README를 따릅니다. 작업 브랜치는 dev에서 분기하고 dev로 PR을 보내 merge commit으로 합칩니다. 작업 PR, dev → main 릴리스 PR, main → dev 동기화 PR 모두 squash/rebase merge를 사용하지 않습니다. 병합 완료를 확인한 작업 브랜치는 로컬과 원격에서 삭제하되, 개별 커밋과 병합 이력은 보존합니다. main과 dev는 유지합니다. 기존 v0.0.1은 이동하지 않습니다. GitHub 보호 규칙과 공개 전환은 이번에 설정하지 않았습니다.
+
+## 진행 상태
+
+사용자 터미널에서 dev와 chore/environment-and-branching 생성, 9c6a29f 커밋과 작업 브랜치 push를 완료했습니다. 현재 문서 수정은 아직 미커밋이며 dev 원격 게시와 dev 대상 PR 생성이 남았습니다.
