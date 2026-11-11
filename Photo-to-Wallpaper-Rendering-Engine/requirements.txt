@@ -1,0 +1,3 @@
+# Resolved runtime and test dependencies for Build and Compare 0.0.1.
+# Install with uv and --require-hashes; see tool-package-shelf/README.md.
+-r tool-package-shelf/requirements.lock

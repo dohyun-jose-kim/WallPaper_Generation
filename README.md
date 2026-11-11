@@ -1,8 +1,10 @@
 # Photo-to-Wallpaper
 
-사진의 구도와 분위기를 보존하면서 Brave 배경용 이미지를 만드는 프로젝트입니다. 현재는 54개 케이스의 Build and Compare 0.0.1 문서 검토 단계이며 렌더링 구현은 아직 시작하지 않았습니다.
+사진의 구도와 분위기를 보존하면서 Brave 배경용 이미지를 만드는 프로젝트입니다. 현재는 54개 케이스의 Build and Compare 0.0.1 환경 설치와 최소 동작 점검을 완료했으며, 사진 처리와 비교 렌더러 구현은 아직 시작하지 않았습니다.
 
 - [현재 비교 실행 계획](Photo-to-Wallpaper-Rendering-Engine/plan-docs/build-n-compare-0.0.1/README.md)
+- [설치 결과와 구현 준비 상태](Photo-to-Wallpaper-Rendering-Engine/plan-docs/build-n-compare-0.0.1/environment-readiness.md)
+- [환경 재설치·점검 방법](Photo-to-Wallpaper-Rendering-Engine/tool-package-shelf/README.md)
 - [향후 로컬 AI 아웃페인팅 조사](Photo-to-Wallpaper-Rendering-Engine/plan-docs/reseatch-0.0.1/local-ai-outpainting-research.md)
 - [상세 기획 및 시안](Photo-to-Wallpaper-Rendering-Engine/README.md)
 - [인수인계](Photo-to-Wallpaper-Rendering-Engine/readme-tmp.md)
@@ -18,15 +20,14 @@
 
 ## Python 환경
 
-아래는 초기 환경 기록입니다. 현재 비교에서는 uv 관리 ARM64 Python 3.12와 루트 `.venv`, 해시 잠금 의존성을 사용하며 정확한 패치 버전과 설치 결과를 기록합니다. Miniforge는 사용하지 않습니다. 환경 교체와 설치는 문서 PR 병합 후 수행합니다.
+uv 관리 ARM64 Python **3.12.14**와 루트 `.venv`를 사용합니다. Python 런타임·빌드 의존성은 해시 잠금 파일로, Node 의존성은 프로젝트 전용 npm 잠금 파일로 설치했습니다. Miniforge는 사용하지 않습니다. 브라우저 바이너리와 캐시는 프로젝트의 Git 제외 경로에 보관합니다.
 
 ```sh
-uv venv .venv
-source .venv/bin/activate
-python --version
+Photo-to-Wallpaper-Rendering-Engine/tool-package-shelf/run.sh python --version
+Photo-to-Wallpaper-Rendering-Engine/tool-package-shelf/run.sh uv pip check --python .venv/bin/python
 ```
 
-초기 환경: uv 0.12.11, CPython 3.9.6. 렌더링 패키지는 설치하지 않았습니다. uv 기본 캐시 경로에 쓰기 권한이 없으면 `UV_CACHE_DIR=/private/tmp/wallpaper-uv-cache uv venv .venv`를 사용할 수 있습니다.
+기존 CPython 3.9.6 가상환경은 `tool-package-shelf/.cache/venv-before-python312/`에 보관했습니다. 새 환경의 재설치·검증 명령은 위 환경 안내를 따릅니다. 설치 점검 통과는 실제 54개 렌더링 결과나 품질 검증을 뜻하지 않습니다.
 
 ## Git과 버전
 
