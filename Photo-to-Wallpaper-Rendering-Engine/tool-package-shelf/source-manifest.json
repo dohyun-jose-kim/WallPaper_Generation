@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-11",
+  "purpose": "Installation and implementation preparation only; no comparison renderers implemented",
+  "sources": [
+    {
+      "id": "D1",
+      "repository": "https://github.com/medfa12/liquid-glass-react",
+      "revision": "a7d3c5ebd04b7efdf264a901cc521f77878744d1",
+      "entrypoint": "src/renderer.ts",
+      "findings": {
+        "license": "MIT; full LICENSE present",
+        "lock": "No npm lockfile in pinned tree",
+        "scripts": "build/typecheck only; not executed",
+        "dependencies": "Selected renderer core has relative imports only; React wrapper excluded"
+      },
+      "files": [
+        {
+          "path": "src/renderer.ts",
+          "url": "https://raw.githubusercontent.com/medfa12/liquid-glass-react/a7d3c5ebd04b7efdf264a901cc521f77878744d1/src/renderer.ts",
+          "sha256": "43d58c9cf4fe7c857a771d53b0fd3ba5723ab3609389a66aa5e78531fb34c170",
+          "bytes": 6919
+        },
+        {
+          "path": "src/shader.ts",
+          "url": "https://raw.githubusercontent.com/medfa12/liquid-glass-react/a7d3c5ebd04b7efdf264a901cc521f77878744d1/src/shader.ts",
+          "sha256": "0aecd668754a9876f9c077b6f02d98eeee377a4574294b3b9e4c848625c06c77",
+          "bytes": 40305
+        },
+        {
+          "path": "src/params.ts",
+          "url": "https://raw.githubusercontent.com/medfa12/liquid-glass-react/a7d3c5ebd04b7efdf264a901cc521f77878744d1/src/params.ts",
+          "sha256": "eb9cc06358e92e2f255572a099626044ce7b59dc019527003292abee20996acb",
+          "bytes": 4998
+        },
+        {
+          "path": "src/params.generated.ts",
+          "url": "https://raw.githubusercontent.com/medfa12/liquid-glass-react/a7d3c5ebd04b7efdf264a901cc521f77878744d1/src/params.generated.ts",
+          "sha256": "2439cf91edf41e86674aa96633cd477843b174b3f931dd837d3fda68b17be67e",
+          "bytes": 11369
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/medfa12/liquid-glass-react/a7d3c5ebd04b7efdf264a901cc521f77878744d1/LICENSE",
+          "sha256": "de4e2123dbff0322148a6286fe99bd6e04e62f972f7290d76ff83ac57e065add",
+          "bytes": 1082
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/medfa12/liquid-glass-react/a7d3c5ebd04b7efdf264a901cc521f77878744d1/README.md",
+          "sha256": "cc1ebdf62b590cfac27d6462b51380bc2a1c0ecdda7e3d4f23f9df42a1710168",
+          "bytes": 10174
+        },
+        {
+          "path": "package.json",
+          "url": "https://raw.githubusercontent.com/medfa12/liquid-glass-react/a7d3c5ebd04b7efdf264a901cc521f77878744d1/package.json",
+          "sha256": "f49f7b4f5654873621b414fbf1f6bac64b4e95e44807f99c6b003848060c82f6",
+          "bytes": 965
+        },
+        {
+          "path": "tsconfig.json",
+          "url": "https://raw.githubusercontent.com/medfa12/liquid-glass-react/a7d3c5ebd04b7efdf264a901cc521f77878744d1/tsconfig.json",
+          "sha256": "1a0685b45db7e73c6077c27c998e8d3f084e1736e460f6b0de6121e58b686542",
+          "bytes": 379
+        }
+      ],
+      "inspected_files": [
+        {
+          "path": "LICENSE",
+          "sha256": "de4e2123dbff0322148a6286fe99bd6e04e62f972f7290d76ff83ac57e065add"
+        },
+        {
+          "path": "README.md",
+          "sha256": "cc1ebdf62b590cfac27d6462b51380bc2a1c0ecdda7e3d4f23f9df42a1710168"
+        },
+        {
+          "path": "package.json",
+          "sha256": "f49f7b4f5654873621b414fbf1f6bac64b4e95e44807f99c6b003848060c82f6"
+        },
+        {
+          "path": "src/params.generated.ts",
+          "sha256": "2439cf91edf41e86674aa96633cd477843b174b3f931dd837d3fda68b17be67e"
+        },
+        {
+          "path": "src/params.ts",
+          "sha256": "eb9cc06358e92e2f255572a099626044ce7b59dc019527003292abee20996acb"
+        },
+        {
+          "path": "src/params27.generated.ts",
+          "sha256": "a3cf574ded08e3fcd44e87dc2a7f8ea7f820287bc1fdec811cce38364344b8fe"
+        },
+        {
+          "path": "src/renderer.ts",
+          "sha256": "43d58c9cf4fe7c857a771d53b0fd3ba5723ab3609389a66aa5e78531fb34c170"
+        },
+        {
+          "path": "src/shader.ts",
+          "sha256": "0aecd668754a9876f9c077b6f02d98eeee377a4574294b3b9e4c848625c06c77"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "1a0685b45db7e73c6077c27c998e8d3f084e1736e460f6b0de6121e58b686542"
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "repository": "https://github.com/ybouane/liquidglass",
+      "revision": "59af227103795f06421a96e2c7d3dceb081decd2",
+      "entrypoint": "src/GlassRenderer.ts",
+      "findings": {
+        "license": "MIT declared in package.json and README; no standalone LICENSE in pinned tree",
+        "lock": "Manifest version 1.0.3 versus npm lock root 1.0.0",
+        "scripts": "postinstall invokes patch-package; patch targets html-to-image; neither installed nor run",
+        "dependencies": "Direct GlassRenderer imports only shaders/defaults, bypassing HtmlCapture and DOM capture dependencies"
+      },
+      "files": [
+        {
+          "path": "src/GlassRenderer.ts",
+          "url": "https://raw.githubusercontent.com/ybouane/liquidglass/59af227103795f06421a96e2c7d3dceb081decd2/src/GlassRenderer.ts",
+          "sha256": "8a77b115249760bc9328fe12201722f2bd9302aaa5fbb2dbe1f9d341b6e63c2b",
+          "bytes": 14340
+        },
+        {
+          "path": "src/shaders.ts",
+          "url": "https://raw.githubusercontent.com/ybouane/liquidglass/59af227103795f06421a96e2c7d3dceb081decd2/src/shaders.ts",
+          "sha256": "af0e7034a2f038d7ec06a25fd203179da2a6cfef363e93e7918fa7a120802d5c",
+          "bytes": 10768
+        },
+        {
+          "path": "src/defaults.ts",
+          "url": "https://raw.githubusercontent.com/ybouane/liquidglass/59af227103795f06421a96e2c7d3dceb081decd2/src/defaults.ts",
+          "sha256": "3ce5f1a113512ec9176fff6a377dbfdee4d40355ff5024cab5f9c8c4979b08d6",
+          "bytes": 2516
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/ybouane/liquidglass/59af227103795f06421a96e2c7d3dceb081decd2/README.md",
+          "sha256": "65c3f90745d8c42419dd17db760a712d2afcc383763ef528b80796ab1644c723",
+          "bytes": 12537
+        },
+        {
+          "path": "package.json",
+          "url": "https://raw.githubusercontent.com/ybouane/liquidglass/59af227103795f06421a96e2c7d3dceb081decd2/package.json",
+          "sha256": "8d72fec650118873c8bf5202482b668cac2c2151c5bdeed95d956a45364bfa05",
+          "bytes": 888
+        },
+        {
+          "path": "tsconfig.json",
+          "url": "https://raw.githubusercontent.com/ybouane/liquidglass/59af227103795f06421a96e2c7d3dceb081decd2/tsconfig.json",
+          "sha256": "f7f212ed564da94dd09c19dd54a22caa67501ff89e244302de7d815945983087",
+          "bytes": 470
+        }
+      ],
+      "inspected_files": [
+        {
+          "path": "README.md",
+          "sha256": "65c3f90745d8c42419dd17db760a712d2afcc383763ef528b80796ab1644c723"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "08d333ec94432dc5bd5b03ffbc5cd622504ceeeda370e7a13d1fa54d9049a4fd"
+        },
+        {
+          "path": "package.json",
+          "sha256": "8d72fec650118873c8bf5202482b668cac2c2151c5bdeed95d956a45364bfa05"
+        },
+        {
+          "path": "patches/html-to-image+1.11.13.patch",
+          "sha256": "cc3d81870c6cc97dccf6795dfc63d983b3b4aadb6f0c9a52a133febe4a598a17"
+        },
+        {
+          "path": "src/GlassRenderer.ts",
+          "sha256": "8a77b115249760bc9328fe12201722f2bd9302aaa5fbb2dbe1f9d341b6e63c2b"
+        },
+        {
+          "path": "src/defaults.ts",
+          "sha256": "3ce5f1a113512ec9176fff6a377dbfdee4d40355ff5024cab5f9c8c4979b08d6"
+        },
+        {
+          "path": "src/shaders.ts",
+          "sha256": "af0e7034a2f038d7ec06a25fd203179da2a6cfef363e93e7918fa7a120802d5c"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "f7f212ed564da94dd09c19dd54a22caa67501ff89e244302de7d815945983087"
+        }
+      ]
+    },
+    {
+      "id": "D3",
+      "repository": "https://github.com/rdev/liquid-glass-react",
+      "revision": "ac48eab18d1f7f444ae30002d240cae29c863a21",
+      "entrypoint": "src/index.tsx",
+      "findings": {
+        "license": "MIT; full LICENSE present; shader-utils credits shuding/liquid-glass without a revision",
+        "lock": "Manifest 1.1.1, peers >=18; npm lock root 1.0.0, peers >=16.8.0; bun.lock also inspected",
+        "scripts": "build/clean/prepublish scripts inspected, not executed; esbuild.config.js references src/index.ts while actual entry is index.tsx",
+        "dependencies": "Selected component requires React; use project React/React DOM 18.3.1 and esbuild 0.28.0 with automatic JSX"
+      },
+      "files": [
+        {
+          "path": "src/index.tsx",
+          "url": "https://raw.githubusercontent.com/rdev/liquid-glass-react/ac48eab18d1f7f444ae30002d240cae29c863a21/src/index.tsx",
+          "sha256": "aaea920c8de2af15d4df322f99124d65b57a9088b2479c056bce428f3ddeadba",
+          "bytes": 22219
+        },
+        {
+          "path": "src/shader-utils.ts",
+          "url": "https://raw.githubusercontent.com/rdev/liquid-glass-react/ac48eab18d1f7f444ae30002d240cae29c863a21/src/shader-utils.ts",
+          "sha256": "c3c3296ec2f680196a38f05cccf19050097ba93bc2b4dc4cbad1a31197d2425f",
+          "bytes": 4102
+        },
+        {
+          "path": "src/utils.ts",
+          "url": "https://raw.githubusercontent.com/rdev/liquid-glass-react/ac48eab18d1f7f444ae30002d240cae29c863a21/src/utils.ts",
+          "sha256": "73a3fb2a6578b8e8bcbf7eb79e8dbeb6a15a36d8ba5525a2d665002d0b5cd917",
+          "bytes": 41100
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/rdev/liquid-glass-react/ac48eab18d1f7f444ae30002d240cae29c863a21/LICENSE",
+          "sha256": "3beea6e227a2549d48b616818e01ce303482cb0d598182add5d629b339bdb7cc",
+          "bytes": 1060
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/rdev/liquid-glass-react/ac48eab18d1f7f444ae30002d240cae29c863a21/README.md",
+          "sha256": "4235d2d5143eb67e0c6a0c5d87cb123ee691d5b76c6e3038ff51817567c36e7d",
+          "bytes": 3801
+        },
+        {
+          "path": "package.json",
+          "url": "https://raw.githubusercontent.com/rdev/liquid-glass-react/ac48eab18d1f7f444ae30002d240cae29c863a21/package.json",
+          "sha256": "bdc33c1ffe4279a10d71d06668e4d66249735eb856ef1c7390985ffaf71b419b",
+          "bytes": 1262
+        },
+        {
+          "path": "tsconfig.json",
+          "url": "https://raw.githubusercontent.com/rdev/liquid-glass-react/ac48eab18d1f7f444ae30002d240cae29c863a21/tsconfig.json",
+          "sha256": "326a71027557e6228c4114172058402a6cc71e1a88146e90df79e4dc72d789e5",
+          "bytes": 637
+        }
+      ],
+      "inspected_files": [
+        {
+          "path": "LICENSE",
+          "sha256": "3beea6e227a2549d48b616818e01ce303482cb0d598182add5d629b339bdb7cc"
+        },
+        {
+          "path": "README.md",
+          "sha256": "4235d2d5143eb67e0c6a0c5d87cb123ee691d5b76c6e3038ff51817567c36e7d"
+        },
+        {
+          "path": "bun.lock",
+          "sha256": "c53ec355d2c179d044c3b39760e5ef84c02364233461eab490c4841412a4b71b"
+        },
+        {
+          "path": "esbuild.config.js",
+          "sha256": "350e2e98eb30094068f00d4eac5eee71389e5a48d4c185a7e90d2d4811a6fc97"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "6733c97e6b9ac822b97f09d2f0833adae4369958605443833931e89d0ba69947"
+        },
+        {
+          "path": "package.json",
+          "sha256": "bdc33c1ffe4279a10d71d06668e4d66249735eb856ef1c7390985ffaf71b419b"
+        },
+        {
+          "path": "src/index.tsx",
+          "sha256": "aaea920c8de2af15d4df322f99124d65b57a9088b2479c056bce428f3ddeadba"
+        },
+        {
+          "path": "src/shader-utils.ts",
+          "sha256": "c3c3296ec2f680196a38f05cccf19050097ba93bc2b4dc4cbad1a31197d2425f"
+        },
+        {
+          "path": "src/utils.ts",
+          "sha256": "73a3fb2a6578b8e8bcbf7eb79e8dbeb6a15a36d8ba5525a2d665002d0b5cd917"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "326a71027557e6228c4114172058402a6cc71e1a88146e90df79e4dc72d789e5"
+        }
+      ]
+    }
+  ]
+}

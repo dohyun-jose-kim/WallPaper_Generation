@@ -1,19 +1,8 @@
 # Build and Compare 0.0.1
 
-Current scope, 2026-11-11. This document implements the user's supplied plan as the execution contract. Rendering has not started. This evaluation is separate from the future single-image pipeline. The earlier 10-image limit and 26-image proposal are superseded by **54 expected cases**; failures remain visible in the matrix. AI outpainting is excluded.
+Completed 2026-11-11: all 54 cases passed in run `20261111T023907Z-52cf6f`. All image hashes verified during closeout, including 11 positive-rating `a` renames. The original manifest is preserved. [Report](index.html), [selection](tool-selection.md), [current pipeline status](../../../docs/PROJECT_STATUS.md).
 
-- [Comparison matrix](comparison-matrix.csv): every expected case, initially `planned`.
-- [Five renderer procedures](procedures.md): acquisition, adapters, and native controls.
-- [Tool selection record](tool-selection.md): pending technical checks and user visual review.
-- [Future local AI research](../reseatch-0.0.1/local-ai-outpainting-research.md): no model downloads in this comparison.
-
-## Build preparation completed in this documentation change
-
-The implementation specification is prepared: two input files are selected; all 54 cases are enumerated; foreground geometry, color handling, metadata removal and export rules are defined; the five renderer procedures, browser-source revisions and initial presets are recorded. Target Python/Node environments, initial package pins and dependency-lock requirements are documented. Acceptance checks, measurement procedures, resource limits, report requirements and the Git execution sequence are also specified.
-
-Documentation verification passed: the matrix contains exactly the expected 54 unique cases, local document links resolve, the staged diff passes whitespace checks, and the two selected originals retain their recorded hashes.
-
-**Executable build preparation is still pending:** Python 3.12 environment creation, dependency resolution and lockfile generation, package/browser installation, pinned-source acquisition and license inspection, adapter implementation, and smoke tests. No renderer has been built or run; no output images, performance results or completed comparison report are included in this commit.
+The following specification records the comparison contract. Historical future-tense language below describes the original experiment, not current implementation status.
 
 ## Inputs and image geometry
 
@@ -60,7 +49,7 @@ API references: [orientation](https://pillow.readthedocs.io/en/stable/reference/
 
 ## Environment contract
 
-Use uv-managed **ARM64 Python 3.12** in repository-root `.venv`; record the resolved patch version. Do not use Miniforge. The existing environment was created with CPython 3.9.6 and has not yet been replaced for this run.
+Use uv-managed **ARM64 Python 3.12** in repository-root `.venv`; the installed patch version is **3.12.14**. Do not use Miniforge. The prior CPython 3.9.6 environment is backed up in ignored local storage.
 
 | Initial package pin supplied by plan | Version |
 | --- | --- |
@@ -72,7 +61,7 @@ Use uv-managed **ARM64 Python 3.12** in repository-root `.venv`; record the reso
 | psutil | 7.2.2 |
 | pytest | 9.2.0 |
 
-The supplied plan reports these pins checked against published metadata; resolution and installation remain unproven in this context. Resolve transitive dependencies into a hash-locked requirements file **before installation**. Record resolution/build failures; do not silently change pins. pyvips may require a wrapper build; use its bundled native library.
+These pins were rechecked against published metadata and installed without changes. Transitive runtime and build dependencies were hash-locked **before installation**. Preserve that procedure for future changes. The pyvips wrapper build succeeded and uses its bundled native library; full rendering remains untested.
 
 Use installed Node.js 26.8.1 and npm 11.19.0, verifying actual versions before use. Use esbuild 0.28.0 and React/React DOM 18.3.1 for D3, with a project-owned npm lockfile. Browser adapters must not rely on the inconsistent/missing upstream locks described in the procedures.
 
@@ -128,4 +117,4 @@ Keep browser binaries and upstream downloads in ignored local storage. Preserve 
 7. Check `feat/style-comparison` for unique work and update it from `dev` without overwriting unique changes.
 8. Implement preparation, S1, D1, D2, D3, then S2; run the complete matrix and produce/verify the HTML report.
 
-Do not merge into `main` or create a release tag. Installation success, compatibility, useful settings, repeatability, performance, and winning tools remain unproven until measured.
+Do not merge into `main` or create a release tag. Installation and synthetic initialization now pass. Full scene compatibility, useful settings, repeatability, performance, and winning tools remain unproven until measured.

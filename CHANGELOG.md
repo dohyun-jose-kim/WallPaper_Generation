@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Completed 54 comparison cases; repaired 11 positive-rating report links without modifying images or run records. Selected S1 Blur, S1 Gallery, D3 Frosted, S2 Gradient. Pipeline work follows on one branch; branch cleanup and releases deferred.
+
+- 2026-11-11: Prepared the two selected photos as clean RGB PNG copies. Added reusable orientation, color conversion, proportional resize, PNG export and validation code. Nine tests passed. Three runs gave identical outputs. Original file hashes are unchanged. The 54 wallpaper cases remain planned.
+
+- 2026-11-11: ARM64 Python 3.12.14 환경과 Python 런타임·빌드 해시 잠금, npm 잠금 및 Chromium 설치 완료. 고정 리비전의 웹 렌더러 필수 소스·라이선스 확인, 소스 해시 검증, 번들링과 Chromium/Brave WebGL 초기화·합성 픽셀 캡처 점검 통과. 실제 사진 처리·54개 비교 렌더링은 아직 시작하지 않음.
+
 - 2026-11-11: Build and Compare 0.0.1의 54개 케이스, 공통 전처리·메타데이터 검증, 다섯 렌더러 절차, 자원 제한과 HTML 비교 보고서 계약을 문서화. 이전 범위를 과거 기록으로 표시하고 향후 로컬 AI 연구를 출처 기반으로 재구성. 구현·설치·렌더링 결과는 아직 없음.
 
 - 2026-11-11: 작업 PR의 병합 정책을 squash merge에서 merge commit으로 변경. 병합 완료 후 작업 브랜치는 로컬·원격에서 삭제하고 개별 커밋과 병합 이력은 보존. main과 dev는 유지.

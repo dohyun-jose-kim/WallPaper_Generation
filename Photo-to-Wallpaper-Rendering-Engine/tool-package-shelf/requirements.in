@@ -1,0 +1,8 @@
+# Initial pins from the approved comparison plan.
+Pillow==13.0.0
+numpy==2.5.4
+pyvips[binary]==3.2.0
+pyvips-binary==8.18.7
+playwright==1.65.0
+psutil==7.2.2
+pytest==9.2.0

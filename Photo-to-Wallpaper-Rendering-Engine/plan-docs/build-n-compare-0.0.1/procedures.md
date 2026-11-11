@@ -1,6 +1,6 @@
 # Five renderer procedures
 
-Status: planned, not acquired or executed in this documentation stage. Apply all geometry, protection, export, measurement, timeout, and failure rules in the [current plan](README.md).
+Status: comparison procedures planned; selected source files acquired and installation smoke checks completed on 2026-11-11. See [readiness and limitations](environment-readiness.md). No comparison cases have been executed. Apply all geometry, protection, export, measurement, timeout, and failure rules in the [current plan](README.md).
 
 ## Acquisition before execution
 
