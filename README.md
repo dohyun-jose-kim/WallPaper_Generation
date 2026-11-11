@@ -1,4 +1,4 @@
-# WALL-E — wallpaper engine made by DH-thejose
+# WALL-E — WALLpaper Engine made by DH-thejose
 
 WALL-E is a local command-line tool for macOS on Apple Silicon. It turns one content photo into four 8-bit RGB PNG wallpapers, keeping the complete photo sharp and proportional.
 
