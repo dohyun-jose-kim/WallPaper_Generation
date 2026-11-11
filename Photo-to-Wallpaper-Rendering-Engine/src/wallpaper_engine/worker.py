@@ -14,6 +14,19 @@ class VerificationError(RuntimeError):
     pass
 
 
+def input_reason(error):
+    # Map only application-owned messages. Never expose raw library errors.
+    return {
+        'Embedded color profile cannot be converted to sRGB': 'invalid_profile',
+        'Untagged non-RGB input has no defined color conversion': 'untagged_cmyk',
+        'Animated or multi-frame inputs are unsupported': 'multi_frame',
+        'Input exceeds 100 million pixels': 'decoded_pixels',
+        'Input exceeds 200 MiB': 'file_bytes',
+        'Only JPEG and PNG are supported': 'unsupported_format',
+        'input_changed': 'input_changed',
+    }.get(str(error), 'invalid_input')
+
+
 def emit(kind, **fields):
     print(json.dumps({'version': 1, 'type': kind, **fields}, allow_nan=False), flush=True)
 
@@ -123,9 +136,10 @@ def main():
             from .settings import read_source, inspect_source
             try:
                 data = read_source(args.inspect)
+                dimensions = inspect_source(data)
             except OSError:
                 raise ValueError('invalid_input') from None
-            emit('inspected', dimensions=inspect_source(data), sha256=hashlib.sha256(data).hexdigest())
+            emit('inspected', dimensions=dimensions, sha256=hashlib.sha256(data).hexdigest())
         else:
             line = args.request.read_text() if args.request else sys.stdin.readline(65537)
             if len(line) > 65536:
@@ -133,7 +147,7 @@ def main():
             run(request(line), managed=args.request is None)
         return 0
     except (ValueError, KeyError, TypeError) as error:
-        emit('error', code='invalid_input', retryable=False)
+        emit('error', code='invalid_input', reason=input_reason(error), retryable=False)
         return 2
     except Exception as error:
         from .browser import BrowserStartupError

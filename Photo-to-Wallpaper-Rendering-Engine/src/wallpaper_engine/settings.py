@@ -21,8 +21,10 @@ def read_source(path):
 
 def inspect_source(data):
     with Image.open(io.BytesIO(data)) as image:
-        if image.format not in ('JPEG', 'PNG') or getattr(image, 'n_frames', 1) != 1:
-            raise ValueError('Only single-frame JPEG and PNG are supported')
+        if getattr(image, 'n_frames', 1) != 1:
+            raise ValueError('Animated or multi-frame inputs are unsupported')
+        if image.format not in ('JPEG', 'PNG'):
+            raise ValueError('Only JPEG and PNG are supported')
         if image.width * image.height > 100_000_000:
             raise ValueError('Input exceeds 100 million pixels')
         size = image.size

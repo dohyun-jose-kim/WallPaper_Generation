@@ -111,3 +111,16 @@ def test_cancel_stops_children_and_cleans_staging(tmp_path):
     process.communicate(timeout=15);assert process.returncode!=0
     assert not list((work/'wall-pic-out').glob('*/.*.staging'))
     assert all(j['status']!='running' for j in records(work))
+
+
+def test_settings_and_color_errors_are_explicit(tmp_path):
+    work=tmp_path/'ws';invoke(work,'init')
+    settings=work/'.wallpaper/settings.json';original=settings.read_bytes()
+    settings.write_text('{"brand":"WALL-E","width":"bad","height":1080,"border":0.05}')
+    source=photo(tmp_path/'source.png')
+    result=invoke(work,'render',source,success=2);assert 'invalid_settings' in result.stderr
+    settings.write_bytes(original)
+    cmyk=tmp_path/'cmyk.jpg';Image.new('CMYK',(4,3)).save(cmyk)
+    profile=tmp_path/'profile.png';Image.new('RGB',(4,3)).save(profile,icc_profile=b'invalid')
+    result=invoke(work,'render',cmyk,profile,'--width',512,'--height',512,success=3)
+    assert 'untagged_cmyk' in result.stdout and 'invalid_profile' in result.stdout

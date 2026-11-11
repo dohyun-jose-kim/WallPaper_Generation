@@ -59,6 +59,14 @@ struct Render {
     #[arg(long)]
     brand: Option<String>,
 }
+#[derive(serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+struct Settings {
+    brand: String,
+    width: u32,
+    height: u32,
+    border: f64,
+}
 struct Engine {
     python: PathBuf,
     source: Option<PathBuf>,
@@ -406,7 +414,16 @@ impl Worker {
                     let code = value["code"].as_str().unwrap_or("");
                     self.failure = Some(match code {
                         "browser_startup" => ("browser_startup", true),
-                        "invalid_input" => ("invalid_input", false),
+                        "invalid_input" => (
+                            match value["reason"].as_str() {
+                                Some("invalid_profile") => "invalid_profile",
+                                Some("untagged_cmyk") => "untagged_cmyk",
+                                Some("multi_frame") => "multi_frame_input",
+                                Some("decoded_pixels") => "input_pixel_limit",
+                                _ => "invalid_input",
+                            },
+                            false,
+                        ),
                         "verification_failed" => ("verification", false),
                         _ => ("processing_failed", false),
                     });
@@ -770,18 +787,14 @@ fn execute(cli: Cli, cancel: &AtomicBool) -> Result<bool> {
     let mut all_ok = true;
     match cli.command {
         Action::Render(args) => {
-            let settings: Value =
-                serde_json::from_slice(&fs::read(workspace.join(".wallpaper/settings.json"))?)?;
-            let brand = args
-                .brand
-                .unwrap_or_else(|| settings["brand"].as_str().unwrap_or("WALL-E").into());
+            let settings: Settings =
+                serde_json::from_slice(&fs::read(workspace.join(".wallpaper/settings.json"))?)
+                    .map_err(|_| "invalid_settings")?;
+            let brand = args.brand.unwrap_or_else(|| settings.brand.clone());
             if !valid_brand(&brand) {
                 return Err("brand_must_use_letters_digits_hyphen_underscore".into());
             }
-            let border = args
-                .border
-                .map(|b| b / 100.0)
-                .unwrap_or_else(|| settings["border"].as_f64().unwrap_or(0.05));
+            let border = args.border.map(|b| b / 100.0).unwrap_or(settings.border);
             let (mut width, mut height) = if let Some(preset) = args.preset {
                 let presets: Value =
                     serde_json::from_str(include_str!("../../config/presets.json"))?;
@@ -801,10 +814,8 @@ fn execute(cli: Cli, cancel: &AtomicBool) -> Result<bool> {
                 )
             } else {
                 (
-                    args.width
-                        .unwrap_or(settings["width"].as_u64().unwrap_or(1920) as u32),
-                    args.height
-                        .unwrap_or(settings["height"].as_u64().unwrap_or(1080) as u32),
+                    args.width.unwrap_or(settings.width),
+                    args.height.unwrap_or(settings.height),
                 )
             };
             if args.swap {
@@ -968,6 +979,7 @@ fn main() {
             eprintln!("WALL-E: {safe}");
             if [
                 "target_size_limit",
+                "invalid_settings",
                 "manual_layout_required",
                 "border_range",
                 "unknown_preset",

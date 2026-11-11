@@ -80,3 +80,10 @@ def test_export_verification_has_nonretryable_error_class(tmp_path,monkeypatch):
     job={'source':str(source),'width':512,'height':512,'border':.05,'threads':1,'work_dir':str(tmp_path/'work')}
     with pytest.raises(worker.VerificationError):worker.run(job)
     assert not list((tmp_path/'work').glob('*.png'))
+
+
+def test_input_errors_are_specific_and_sanitized():
+    from wallpaper_engine.worker import input_reason
+    assert input_reason(ValueError('Embedded color profile cannot be converted to sRGB'))=='invalid_profile'
+    assert input_reason(ValueError('Untagged non-RGB input has no defined color conversion'))=='untagged_cmyk'
+    assert input_reason(ValueError('/private/secret-photo.png: decoder error'))=='invalid_input'
