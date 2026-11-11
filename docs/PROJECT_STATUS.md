@@ -13,7 +13,7 @@ See [decisions](DECISIONS.md), [pipeline design](pipeline-design.md), and [verif
 
 ## Pipeline implementation
 
-All pipeline work is on `feat/wallpaper-pipeline`.
+All pipeline work is on `feat/wallpaper-pipeline`, published for review in [draft PR #6](https://github.com/dohyun-jose-kim/WallPaper_Generation/pull/6). Usage and verification records were committed in `9fd6417`.
 
 - `03fd49f` — reusable engine package, separate D3 production entry point and packaged JavaScript, variable targets/borders, input policy, exact foreground restoration.
 - `3dd43fa` — Rust CLI, protocol, durable publication and resource supervision.
