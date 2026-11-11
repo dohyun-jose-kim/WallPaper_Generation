@@ -1,10 +1,11 @@
-# Photo-to-Wallpaper
+# WALL-E — wallpaper engine made by DH-thejose
 
-사진의 구도와 분위기를 보존하면서 Brave 배경용 이미지를 만드는 프로젝트입니다. 현재는 54개 케이스의 Build and Compare 0.0.1 환경 설치와 최소 동작 점검을 완료했으며, 사진 처리와 비교 렌더러 구현은 아직 시작하지 않았습니다.
+This project makes Brave background images while preserving the complete source photo. The 54-case comparison is complete. Selected outputs: S1 blurred background, S1 gallery frame, D3 frosted glass, and S2 gradient. The user pipeline is now being implemented; see [project status](docs/PROJECT_STATUS.md), [decisions](docs/DECISIONS.md), and [pipeline design](docs/pipeline-design.md).
 
 - [현재 비교 실행 계획](Photo-to-Wallpaper-Rendering-Engine/plan-docs/build-n-compare-0.0.1/README.md)
 - [설치 결과와 구현 준비 상태](Photo-to-Wallpaper-Rendering-Engine/plan-docs/build-n-compare-0.0.1/environment-readiness.md)
 - [환경 재설치·점검 방법](Photo-to-Wallpaper-Rendering-Engine/tool-package-shelf/README.md)
+- [Image preparation and results](Photo-to-Wallpaper-Rendering-Engine/code/README.md)
 - [향후 로컬 AI 아웃페인팅 조사](Photo-to-Wallpaper-Rendering-Engine/plan-docs/reseatch-0.0.1/local-ai-outpainting-research.md)
 - [상세 기획 및 시안](Photo-to-Wallpaper-Rendering-Engine/README.md)
 - [인수인계](Photo-to-Wallpaper-Rendering-Engine/readme-tmp.md)
@@ -13,7 +14,7 @@
 
 ## 폴더
 
-- `Photo-to-Wallpaper-Rendering-Engine/code/`: 향후 구현 코드
+- `Photo-to-Wallpaper-Rendering-Engine/code/`: 비교 실행 코드
 - `Photo-to-Wallpaper-Rendering-Engine/plan-docs/`: 계획 문서
 - `Photo-to-Wallpaper-Rendering-Engine/results/`: 생성 결과, Git 제외
 - `data/`: 원본 사진, Git 제외
@@ -54,7 +55,7 @@ gh pr create --base dev
 
 작업 PR은 dev에 merge commit으로 합칩니다. 개별 커밋과 분기·병합 이력을 보존하며 squash/rebase merge는 사용하지 않습니다. PR에는 변경 목적, 검증 결과와 제한을 기록합니다.
 
-병합 완료를 확인한 뒤 해당 작업 브랜치를 로컬과 원격에서 삭제합니다. 브랜치 삭제는 merge commit과 기존 커밋 이력을 삭제하지 않습니다. main과 dev는 유지합니다.
+현재 작업에서는 브랜치 삭제와 문서 보관을 연기합니다. 브랜치 삭제는 merge commit과 기존 커밋 이력을 삭제하지 않습니다. main과 dev는 유지합니다.
 
 릴리스는 dev → main PR을 검증한 뒤 merge commit으로 합칩니다. 장기 브랜치 간 공통 이력을 보존하기 위해 릴리스 PR에는 squash/rebase merge를 사용하지 않습니다. 릴리스 후 main → dev 동기화 PR도 merge commit으로 합칩니다.
 

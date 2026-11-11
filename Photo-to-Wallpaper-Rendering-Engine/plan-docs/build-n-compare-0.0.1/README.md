@@ -1,20 +1,8 @@
 # Build and Compare 0.0.1
 
-Current scope, 2026-11-11. This document implements the user's supplied plan as the execution contract. Rendering has not started. This evaluation is separate from the future single-image pipeline. The earlier 10-image limit and 26-image proposal are superseded by **54 expected cases**; failures remain visible in the matrix. AI outpainting is excluded.
+Completed 2026-11-11: all 54 cases passed in run `20261111T023907Z-52cf6f`. All image hashes verified during closeout, including 11 positive-rating `a` renames. The original manifest is preserved. [Report](index.html), [selection](tool-selection.md), [current pipeline status](../../../docs/PROJECT_STATUS.md).
 
-- [Comparison matrix](comparison-matrix.csv): every expected case, initially `planned`.
-- [Five renderer procedures](procedures.md): acquisition, adapters, and native controls.
-- [Installation readiness](environment-readiness.md): dependencies and sources installed; synthetic checks passed on 2026-11-11.
-- [Tool selection record](tool-selection.md): pending technical checks and user visual review.
-- [Future local AI research](../reseatch-0.0.1/local-ai-outpainting-research.md): no model downloads in this comparison.
-
-## Specification and installation status
-
-The implementation specification is prepared: two input files are selected; all 54 cases are enumerated; foreground geometry, color handling, metadata removal and export rules are defined; the five renderer procedures, browser-source revisions and initial presets are recorded. Target Python/Node environments, initial package pins and dependency-lock requirements are documented. Acceptance checks, measurement procedures, resource limits, report requirements and the Git execution sequence are also specified.
-
-Documentation verification passed: the matrix contains exactly the expected 54 unique cases, local document links resolve, the staged diff passes whitespace checks, and the two selected originals retain their recorded hashes.
-
-**Installation preparation completed on 2026-11-11:** Python 3.12.14 environment creation, dependency locks and installation, matching Chromium download, selected pinned-source acquisition and license inspection, upstream entry-point bundling and synthetic smoke checks. See the readiness record for exact coverage. **Still pending:** photo preparation/export, comparison adapters, 54-case execution, performance measurements, actual-image verification and the HTML report. No wallpaper results have been generated.
+The following specification records the comparison contract. Historical future-tense language below describes the original experiment, not current implementation status.
 
 ## Inputs and image geometry
 
