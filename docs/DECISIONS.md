@@ -18,3 +18,11 @@ Accepted 2026-11-11:
 - Comparison PR merges into dev with a merge commit; all pipeline changes on one branch. Main, release/tag creation, branch deletion and archiving deferred.
 
 Replaced: older comparison documents' pending-selection status and merged-branch cleanup instructions. The supplied implementation plan is the current authority.
+
+Implementation clarifications:
+
+- Original comparison `.JPG` inputs are multi-frame MPO. Keep historical first-frame preparation reproducible, reject those containers in production, and use their clean prepared PNGs for exact renderer baseline checks.
+- Brand characters are limited to ASCII letters/digits/hyphen/underscore, length 1–48, to keep output components portable.
+- One orchestrator owns a workspace lock; photo jobs within that run remain concurrent. SQLite allocation also handles independent concurrent transactions.
+- The managed distribution includes a relocatable Python runtime and matching Chromium, installs offline from hashed wheels, and retains all preceding versions until explicit uninstall. No system Python, Node/npm, or Rust is required at runtime.
+- Atomic publication uses macOS `RENAME_EXCL`; Windows and Linux need platform-specific validation before support is enabled.

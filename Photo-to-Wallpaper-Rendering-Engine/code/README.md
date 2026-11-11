@@ -1,4 +1,6 @@
-# Image preparation
+# Comparison entry points and preparation
+
+The completed comparison has 54 passing cases. Production code lives in `../src/wallpaper_engine`; the preparation and static-renderer files here are compatibility wrappers. [Current pipeline status](../../docs/PROJECT_STATUS.md).
 
 The preparation command reads only the two selected source photos. It does not modify files in `data/`.
 
@@ -21,11 +23,11 @@ Existing output files are kept. An identical rerun succeeds. A different output 
 
 Both selected images were prepared on 2026-11-11:
 
-| Input | Prepared size | Protected rectangle on the future canvas |
+| Input | Prepared size | Protected rectangle on the comparison canvas |
 | --- | --- | --- |
 | portrait-01 | 729 × 972 | x=595, y=54, width=729, height=972 |
 | landscape-01 | 1296 × 972 | x=312, y=54, width=1296, height=972 |
 
-Nine tests passed. Three runs produced identical PNG bytes and records. Both originals still match their earlier SHA-256 values. Both PNG files have no metadata chunks. Visual inspection confirmed the expected orientation. The prepared files contain the complete photos; the 1920 × 1080 wallpaper canvas will be built in the renderer step.
+Nine tests passed. Three runs produced identical PNG bytes and records. Both originals still match their earlier SHA-256 values. Both PNG files have no metadata chunks. Visual inspection confirmed the expected orientation. The prepared files contain the complete photos; the completed comparison restores these pixels on each 1920 × 1080 canvas. The historical preparation path retains first-frame handling of the original MPO files; production rejects multi-frame inputs.
 
 Verification record: `results/build-n-compare-0.0.1/runs/preparation-135f1179d1e4979c.json`.

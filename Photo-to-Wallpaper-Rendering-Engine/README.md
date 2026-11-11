@@ -1,3 +1,5 @@
+> Historical planning/handoff document. Current implementation and usage: [WALL-E README](../README.md) and [project status](../docs/PROJECT_STATUS.md). Preserved in place; not archived.
+
 # Photo-to-Wallpaper Rendering Engine
 
 > 현재 작업: [Build and Compare 0.0.1](plan-docs/build-n-compare-0.0.1/README.md)의 54개 케이스 비교. 아래의 초기 시안/인수인계 및 단계 제안은 과거 기록이며, 현재 실행 순서는 새 계획을 따른다.

@@ -1,8 +1,8 @@
 # Installation readiness — 2026-11-11
 
-This record describes the installation checkpoint. The later [image preparation step](../../code/README.md) is now complete.
+This is a historical installation checkpoint. The later comparison and selection are complete; see [current project status](../../../docs/PROJECT_STATUS.md). The statements below describe that earlier checkpoint.
 
-Status: **installation and synthetic smoke checks completed; implementation can begin**. No wallpaper adapters, source-photo processing, matrix runs, timing comparison, visual selection or completed HTML report exist yet. No AI models were downloaded.
+Checkpoint status: **installation and synthetic smoke checks completed**. No wallpaper adapters, source-photo processing, matrix runs, timing comparison, visual selection or completed HTML report exist yet. No AI models were downloaded.
 
 ## Resolved environment
 

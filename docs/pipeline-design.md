@@ -52,3 +52,11 @@ Rust alone writes application JSONL logs with run/job IDs, stages, timings, back
 Pinned Rust and Cargo.lock; ignored local developer downloads, no profile changes. Distribute executable, wheel, production browser assets, locks, defaults and attribution. User selects prefix; show locations/dependencies/launcher choice first. Python environment created at final path; matching Chromium; no runtime Rust/Node/npm. Validate upgrade before activation, retain previous version for rollback, uninstall owned files only, preserve workspaces.
 
 Acceptance includes same-environment FHD baseline equality, preset/custom/portrait/square/reference geometry and ratio boundaries, input/color/orientation/privacy safeguards, naming concurrency/overflow/resume/collisions, resource/cancellation/crash tests, installation outside repo with spaces and without dev tools on PATH, upgrade/rollback/uninstall, and consistent docs. Release build/testing stays on pipeline branch; publication later.
+
+## Implemented interfaces
+
+CLI: `init`, `doctor`, `render`, `resume`; [usage](../README.md). Versioned [JSONL protocol](../contracts/README.md) and [job schema](../contracts/job.schema.json). Rust uses one persistent sysinfo 0.37.2 monitor (locked in Cargo.lock), successive CPU samples, immediate memory refresh before admission, and typed sanitized logging; see [upstream monitoring guidance](https://github.com/GuillaumeGomez/sysinfo).
+
+A workspace lock prevents separate orchestrators from bypassing the shared resource and browser policy. Workers get their own process groups. Result records are journaled in SQLite before destination-filesystem atomic rename; resume reconciles a published set after interrupted status updates. Engine paths resolve from the installed executable prefix; development fallback is used only when no installed environment is present.
+
+The distribution includes its own Python, browser binaries and wheels. Build and installation procedures and offline lifecycle verification are in [packaging](../packaging/README.md). The original comparison adapters remain separate from the production D3 bundle.
