@@ -57,3 +57,26 @@ def test_animation_and_other_formats_rejected():
 def test_protocol_rejects_unknown_versions():
     for line in ['{}','{"version":2,"type":"job"}','[]']:
         with pytest.raises(ValueError): request(line)
+
+
+def test_file_and_decoded_pixel_guards(tmp_path,monkeypatch):
+    from wallpaper_engine import settings
+    path=tmp_path/'large.png';path.write_bytes(b'x'*21)
+    monkeypatch.setattr(settings,'MAX_BYTES',20)
+    with pytest.raises(ValueError,match='200 MiB'):settings.read_source(path)
+    import struct,zlib
+    data=encoded(Image.new('RGB',(1,1)))
+    header=struct.pack('>IIBBBBB',10001,10000,8,2,0,0,0)
+    ihdr=struct.pack('>I',13)+b'IHDR'+header+struct.pack('>I',zlib.crc32(b'IHDR'+header)&0xffffffff)
+    with pytest.warns(Image.DecompressionBombWarning):
+        with pytest.raises(ValueError,match='100 million'):settings.inspect_source(data[:8]+ihdr+data[33:])
+
+
+def test_export_verification_has_nonretryable_error_class(tmp_path,monkeypatch):
+    from wallpaper_engine import worker, image_preparation
+    source=tmp_path/'source.png';source.write_bytes(encoded(Image.new('RGB',(3,2))))
+    def corrupt(_):raise ValueError('bad export')
+    monkeypatch.setattr(image_preparation,'clean_png_bytes',corrupt)
+    job={'source':str(source),'width':512,'height':512,'border':.05,'threads':1,'work_dir':str(tmp_path/'work')}
+    with pytest.raises(worker.VerificationError):worker.run(job)
+    assert not list((tmp_path/'work').glob('*.png'))

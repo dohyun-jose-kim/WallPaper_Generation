@@ -10,13 +10,19 @@ import time
 STYLES = ['blur', 'gallery', 'frosted', 'gradient']
 
 
+class VerificationError(RuntimeError):
+    pass
+
+
 def emit(kind, **fields):
     print(json.dumps({'version': 1, 'type': kind, **fields}, allow_nan=False), flush=True)
 
 
 def request(line):
     value = json.loads(line)
-    if not isinstance(value, dict) or value.get('version') != 1 or value.get('type') != 'job':
+    if not isinstance(value, dict) or type(value.get('version')) is not int or value.get('version') != 1 or value.get('type') != 'job':
+        raise ValueError('protocol')
+    if set(value) - {'version','type','source','source_sha256','width','height','border','styles','threads','work_dir'}:
         raise ValueError('protocol')
     if value.get('styles') != STYLES or type(value.get('threads')) is not int or not 1 <= value['threads'] <= 256:
         raise ValueError('settings')
@@ -40,12 +46,15 @@ def run(job, managed=False):
     work.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
     emit('stage', stage='prepare')
-    source = read_source(job['source'])
-    inspect_source(source)
-    digest = hashlib.sha256(source).hexdigest()
-    if job.get('source_sha256', digest) != digest:
-        raise ValueError('input_changed')
-    photo, details = prepare_pixels(source, fit_box(*canvas, job['border']), canvas)
+    try:
+        source = read_source(job['source'])
+        inspect_source(source)
+        digest = hashlib.sha256(source).hexdigest()
+        if job.get('source_sha256', digest) != digest:
+            raise ValueError('input_changed')
+        photo, details = prepare_pixels(source, fit_box(*canvas, job['border']), canvas)
+    except (OSError, Image.DecompressionBombError):
+        raise ValueError('invalid_input') from None
     x, y, w, h = rectangle(photo, canvas)
     artifacts = []
     for index, style in enumerate(STYLES, 1):
@@ -54,10 +63,10 @@ def run(job, managed=False):
             grant = json.loads(sys.stdin.readline(65537))
             if grant != {'version': 1, 'type': 'browser_slot_grant'}:
                 raise ValueError('protocol')
-        emit('stage', stage='render', style=style)
+        emit('stage', stage='browser_initialization' if style == 'frosted' else 'render', style=style)
         begin = time.monotonic()
         if style == 'frosted':
-            frame, info = render_frosted(photo, blurred_backdrop(photo, canvas), canvas)
+            frame, info = render_frosted(photo, blurred_backdrop(photo, canvas), canvas, lambda: emit('stage', stage='render', style=style))
             backend = info['backend']
             if managed:
                 emit('browser_slot_release')
@@ -67,14 +76,17 @@ def run(job, managed=False):
             frame, backend = renderer.render(), renderer.backend
         emit('stage', stage='export', style=style)
         if frame.size != canvas:
-            raise RuntimeError('verification')
+            raise VerificationError('verification')
         frame.paste(photo, (x, y))
-        data = clean_png_bytes(frame)
-        checks = validate_clean_png(data, canvas)
+        try:
+            data = clean_png_bytes(frame)
+            checks = validate_clean_png(data, canvas)
+        except ValueError:
+            raise VerificationError('verification') from None
         import io
         with Image.open(io.BytesIO(data)) as decoded:
             if decoded.crop((x, y, x+w, y+h)).tobytes() != photo.tobytes():
-                raise RuntimeError('verification')
+                raise VerificationError('verification')
         path = work / f'{index}.png'
         write_new_or_identical(path, data)
         artifacts.append({'path': str(path), 'style': style, 'sha256': hashlib.sha256(data).hexdigest(),
@@ -109,7 +121,10 @@ def main():
             emit('ready', engine='0.1.0', vips='.'.join(str(pyvips.version(i)) for i in range(3)))
         elif args.inspect:
             from .settings import read_source, inspect_source
-            data = read_source(args.inspect)
+            try:
+                data = read_source(args.inspect)
+            except OSError:
+                raise ValueError('invalid_input') from None
             emit('inspected', dimensions=inspect_source(data), sha256=hashlib.sha256(data).hexdigest())
         else:
             line = args.request.read_text() if args.request else sys.stdin.readline(65537)
@@ -117,13 +132,14 @@ def main():
                 raise ValueError('protocol')
             run(request(line), managed=args.request is None)
         return 0
-    except (ValueError, KeyError, TypeError, OSError) as error:
+    except (ValueError, KeyError, TypeError) as error:
         emit('error', code='invalid_input', retryable=False)
         return 2
     except Exception as error:
         from .browser import BrowserStartupError
         retryable = isinstance(error, BrowserStartupError)
-        emit('error', code='browser_startup' if retryable else 'processing_failed', retryable=retryable)
+        code = 'browser_startup' if retryable else 'verification_failed' if isinstance(error, VerificationError) else 'processing_failed'
+        emit('error', code=code, retryable=retryable)
         return 3
 
 

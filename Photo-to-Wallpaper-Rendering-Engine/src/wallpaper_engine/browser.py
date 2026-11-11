@@ -12,13 +12,14 @@ class BrowserStartupError(RuntimeError):
     pass
 
 
-def render_frosted(photo, backdrop, canvas):
+def render_frosted(photo, backdrop, canvas, initialized=lambda: None):
     with sync_playwright() as playwright:
         try:
             browser = playwright.chromium.launch(channel='chromium', headless=True, timeout=120_000)
         except Exception:
             raise BrowserStartupError('browser_startup') from None
         try:
+            initialized()
             page = browser.new_page(viewport=dict(zip(('width', 'height'), canvas)), device_scale_factor=1)
             page.set_default_timeout(60_000)
             errors = []
